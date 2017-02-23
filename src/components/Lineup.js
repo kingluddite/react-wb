@@ -28,6 +28,7 @@ class Lineup extends React.Component {
     const total = lineupIds.reduce((prevTotal, key) => {
       const player = this.props.players[key];
       const count = this.props.lineup[key];
+      // const count = lineupIds.length;
       const isAvailable = player && player.status === 'active';
       if (isAvailable) {
         return prevTotal + (count * player.fee || 0);

@@ -4,6 +4,7 @@ import Lineup from './Lineup';
 import Roster from './Roster';
 import samplePlayers from '../sample-players';
 import Player from './Player';
+import base from '../base';
 
 class App extends React.Component {
 
@@ -17,7 +18,21 @@ class App extends React.Component {
       players: {},
       lineup: {}
     };
+
   }
+    componentWillMount() {
+      this.ref = base.syncState(`${this.props.params.storeId}/players`, {
+        context: this,
+        state: 'players'
+      });
+    }
+
+    componentWillUnmount() {
+      base.removeBinding(this.ref);
+    }
+
+
+
 
   addPlayer(player) {
     // update our state
