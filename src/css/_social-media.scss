@@ -1,0 +1,32 @@
+.github,.facebook,.twitter, {
+  border: 0;
+  display: block;
+  margin-bottom: 2rem;
+  width: 100%;
+  color: #fff;
+  padding: 2rem;
+}
+
+.github {
+  background: #82d465;
+}
+
+.github::after {
+  background: #5cc437;
+}
+
+.facebook {
+  background: #3864a3;
+}
+
+.facebook::after {
+  background: #2d5082;
+}
+
+.twitter {
+  background: #5ea9dd;
+}
+
+.twitter::after {
+  background: #2c8dd0;
+}

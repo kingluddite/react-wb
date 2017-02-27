@@ -2,17 +2,17 @@ import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter, Match, Miss } from 'react-router';
 
-import './css/style.css';
+import './css/main.css';
 import App from './components/App';
-import StorePicker from './components/StorePicker';
+import TeamPicker from './components/TeamPicker';
 import NotFound from './components/NotFound';
 
 const Root = () => {
   return (
     <BrowserRouter>
       <div>
-        <Match exactly pattern="/" component={StorePicker} />
-        <Match pattern="/store/:storeId" component={App} />
+        <Match exactly pattern="/" component={TeamPicker} />
+        <Match pattern="/team/:teamId" component={App} />
         <Miss component={NotFound} />
       </div>
     </BrowserRouter>

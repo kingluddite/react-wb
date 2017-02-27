@@ -9,15 +9,16 @@ class Lineup extends React.Component {
 
   renderLineup(key) {
     const player = this.props.players[key];
-    const count = this.props.lineup[key]
+    const count = this.props.lineup[key];
+    const removeButton = <button onClick={() => this.props.removeFromLineup(key)}>&times;</button>;
 
-    if(!player || player.status === 'unavailable') {
-      return <li key={key}>Sorry, {player ? player.firstName : 'player'} is no longer available</li>
+    if(!player || player.status !== 'active') {
+      return <li key={key}>Sorry, {player ? player.firstName : 'player'} is no longer available {removeButton}</li>
     }
 
     return (
       <li key={key}>
-        <span>{count} {player.firstName}</span>
+        <span>{count} {player.firstName} {removeButton}</span>
         <span className="price">{formatPrice(count * player.fee)}</span>
       </li>
     )
@@ -36,9 +37,9 @@ class Lineup extends React.Component {
       return prevTotal;
     }, 0);
     return (
-      <div className="order-wrap">
+      <div className="lineup-wrap">
         <h2>Your Starting Lineup</h2>
-        <ul className="order">
+        <ul className="lineup">
           {lineupIds.map(this.renderLineup)}
           <li className="total">
             <strong>Total:</strong>

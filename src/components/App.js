@@ -13,6 +13,10 @@ class App extends React.Component {
     this.addPlayer = this.addPlayer.bind(this);
     this.loadSamples = this.loadSamples.bind(this);
     this.addToLineup = this.addToLineup.bind(this);
+    this.updatePlayer = this.updatePlayer.bind(this);
+    this.removePlayer = this.removePlayer.bind(this);
+    this.removeFromLineup = this.removeFromLineup.bind(this);
+
     // initial state (was known as 'getinitialstate' with React createClass)
     this.state = {
       players: {},
@@ -20,19 +24,31 @@ class App extends React.Component {
     };
 
   }
-    componentWillMount() {
-      this.ref = base.syncState(`${this.props.params.storeId}/players`, {
-        context: this,
-        state: 'players'
+
+  componentWillMount() {
+    // this runs before the <App> is rendered
+    this.ref = base.syncState(`${this.props.params.teamId}/players`, {
+      context: this,
+      state: 'players'
+    });
+    // check if there is any lineup in localStorage
+    const localStorageRef = localStorage.getItem(`lineup-${this.props.params.teamId}`);
+
+    if(localStorageRef) {
+      // update our App component's lineup state
+      this.setState({
+        lineup: JSON.parse(localStorageRef)
       });
     }
+  }
 
-    componentWillUnmount() {
-      base.removeBinding(this.ref);
-    }
+  componentWillUnmount() {
+    base.removeBinding(this.ref);
+  }
 
-
-
+  componentWillUpdate(nextProps, nextState) {
+    localStorage.setItem(`lineup-${this.props.params.teamId}`, JSON.stringify(nextState.lineup));
+  }
 
   addPlayer(player) {
     // update our state
@@ -42,6 +58,19 @@ class App extends React.Component {
     players[`player-${timestamp}`] = player;
     // this.state.players.player1 = player;
     // set state
+    this.setState({ players });
+  }
+
+  updatePlayer(key, updatedPlayer) {
+    const players = {...this.state.players};
+    players[key] = updatedPlayer;
+    this.setState({ players });
+  }
+
+  removePlayer(key) {
+    // make a copy of our players state
+    const players = {...this.state.players};
+    players[key] = null;
     this.setState({ players });
   }
 
@@ -60,12 +89,19 @@ class App extends React.Component {
     this.setState({ lineup });
   }
 
+  removeFromLineup(key) {
+    // make a copy of our players state
+    const lineup = {...this.state.lineup};
+    delete lineup[key];
+    this.setState({ lineup });
+  }
+
   render() {
     return (
-      <div className="catch-of-the-day">
+      <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Fresh Fish" />
-          <ul className="list-of-fishes">
+          <Header tagline="Great Players" />
+          <ul className="list-of-players">
             {
               Object
               .keys(this.state.players)
@@ -77,10 +113,18 @@ class App extends React.Component {
             }
           </ul>
         </div>
-        <Lineup players={this.state.players} lineup={this.state.lineup}/>
+        <Lineup
+          players={this.state.players}
+          lineup={this.state.lineup}
+          params={this.props.params}
+          removeFromLineup={this.removeFromLineup}
+        />
         <Roster
           addPlayer={this.addPlayer}
           loadSamples={this.loadSamples}
+          players={this.state.players}
+          updatePlayer={this.updatePlayer}
+          removePlayer={this.removePlayer}
         />
       </div>
     )

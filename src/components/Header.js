@@ -4,8 +4,8 @@ const Header = (props) => {
   return (
     <header className="top">
       <h1>
-        Catch
-        <span className="ofThe">
+        Team
+        <span className="of-the">
           <span className="of">of</span>
           <span className="the">the</span>
         </span>

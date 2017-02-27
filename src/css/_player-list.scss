@@ -1,0 +1,48 @@
+.list-of-players {
+  border-top: 2px solid #000;
+  border-bottom: 1px solid #000;
+  padding-top: 5px;
+  margin-top: 2rem;
+  transform: translateZ(0);
+}
+
+.menu-player {
+  border-bottom: 2px solid #000;
+  border-top: 1px solid #000;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  margin-bottom: 5px;
+  clear: both;
+  overflow: hidden;
+}
+
+.menu-player p {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.menu-player .player-name {
+  margin: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.menu-player .price {
+  font-size: 1.4rem;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+}
+
+.menu-player img {
+  float: left;
+  width: 150px;
+  margin-right: 1rem;
+}

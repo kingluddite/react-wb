@@ -10,6 +10,8 @@
     "eslint-plugin-flowtype": "^2.29.1",
     "eslint-plugin-jsx-a11y": "^3.0.2",
     "eslint-plugin-react": "^6.8.0",
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.2",
     "react-scripts": "0.6.1",
     "stylus": "0.54.5"
   },
@@ -22,9 +24,12 @@
     "react-router": "4.0.0-alpha.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-js": "react-scripts start",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && react-scripts build",
     "watch": "concurrently --names \"webpack, stylus\" --prefix name \"npm run start\" \"npm run styles:watch\"",
-    "build": "react-scripts build",
+    "build-css": "node-sass src/ -o src/",
+    "watch-css": "npm run build-css && node-sass src/ -o src/ --watch",
     "eject": "react-scripts eject",
     "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
     "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css"

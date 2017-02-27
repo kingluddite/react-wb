@@ -1,0 +1,50 @@
+ul.lineup li {
+  border-bottom: 1px solid #000;
+  padding: 2rem 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 1.4rem;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+ul.lineup li:hover button {
+  display: inline;
+}
+
+ul.lineup li button {
+  border: 0;
+  display: none;
+  line-height: 1;
+  padding: 0;
+}
+
+.total {
+  font-weight: 600;
+  border-bottom: 3px solid #000;
+  border-top: 3px double #000;
+}
+
+.unavailable {
+  text-decoration: line-through;
+  background: #f8d0d2;
+}
+
+.price {
+  font-size: 1.2rem;
+}
+
+.count {
+  position: relative;
+  overflow: hidden;
+  float: left;
+}
+
+.count span {
+  display: inline-block;
+}
