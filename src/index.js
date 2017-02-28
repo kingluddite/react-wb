@@ -7,9 +7,11 @@ import App from './components/App';
 import TeamPicker from './components/TeamPicker';
 import NotFound from './components/NotFound';
 
+const repo = `/${window.location.pathname.split('/')[1]}`;
+
 const Root = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/teamsanity/">
       <div>
         <Match exactly pattern="/" component={TeamPicker} />
         <Match pattern="/team/:teamId" component={App} />
