@@ -52,8 +52,8 @@ linters:
     enabled: false
 
   FinalNewline:
-    enabled: true
-    present: true
+    enabled: false
+    present: false
 
   HexLength:
     enabled: true
@@ -98,7 +98,8 @@ linters:
 
   NestingDepth:
     enabled: true
-    max_depth: 1
+    max_depth: 3
+    ignore_parent_selectors: true
 
   PlaceholderInExtend:
     enabled: true
@@ -136,7 +137,6 @@ linters:
   SelectorFormat:
     enabled: true
     convention: hyphenated_lowercase
-    class_convention: '^(?:u|is|has)\-[a-z][a-zA-Z0-9]*$|^(?!u|is|has)[a-zA-Z][a-zA-Z0-9]*(?:\-[a-z][a-zA-Z0-9]*)?(?:\-\-[a-z][a-zA-Z0-9]*)?$'
 
   Shorthand:
     enabled: true

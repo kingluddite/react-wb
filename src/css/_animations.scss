@@ -1,0 +1,54 @@
+/*
+Possible animations:
+enter
+leave
+appear must be set transitionAppear={true} on animation Component
+*/
+
+/* animation when player added to lineup */
+.lineup-enter {
+  transition: all 0.5s;
+  transform: translateX(-120%);
+  max-height: 0;
+  padding: 0 !important;
+
+  &.lineup-enter-active {
+    max-height: 60px;
+    padding: 2rem 0 !important;
+    transform: translateX(0);
+  }
+}
+
+/* animation when player removed from lineup */
+.lineup-leave {
+  transition: all 0.5s;
+  transform: translateX(0);
+  max-height: 60px;
+  padding: 2rem 0 !important;
+
+  &.lineup-leave-active {
+    max-height: 0;
+    padding: 0 !important;
+    transform: translateX(-120%);
+  }
+}
+
+/* number increase/decrease animation */
+.count-enter {
+  transition: all 0.25s;
+  transform: translateY(100%); // start off screen
+  &.count-enter-active {
+    transform: translateY(0); // end in normal resting spot
+  }
+}
+
+.count-leave {
+  transition: all 0.25s;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateY(0); // start at normal resting spot
+  &.count-leave-active {
+    transform: translateY(-100%); // end on screen
+  }
+}

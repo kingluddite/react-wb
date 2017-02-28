@@ -11,7 +11,7 @@ class TeamPicker extends React.Component {
     // first grab text from text field
     // console.log(this.teamInput.value );
     const teamId = this.teamInput.value;
-    console.log(`Going to ${teamId}`);
+    // console.log(`Going to ${teamId}`);
     // second change URL from / to /team/:teamId
     this.context.router.transitionTo(`/team/${teamId}`)
   }

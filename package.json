@@ -27,12 +27,14 @@
     "start-js": "react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && react-scripts build",
-    "watch": "concurrently --names \"webpack, stylus\" --prefix name \"npm run start\" \"npm run styles:watch\"",
     "build-css": "node-sass src/ -o src/",
     "watch-css": "npm run build-css && node-sass src/ -o src/ --watch",
     "eject": "react-scripts eject",
-    "styles": "stylus -u autoprefixer-stylus ./src/css/style.styl -o ./src/css/style.css",
-    "styles:watch": "stylus -u autoprefixer-stylus -w ./src/css/style.styl -o ./src/css/style.css"
+    "deploy": "ns ./build --cmd 'list ./content -s'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kingluddite/react-wb.git"
   },
   "eslintConfig": {
     "extends": "./node_modules/react-scripts/.eslintrc"

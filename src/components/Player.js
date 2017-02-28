@@ -2,6 +2,7 @@ import React from 'react';
 import { formatPrice } from '../helpers';
 
 class Player extends React.Component {
+
   render() {
     const { details, index } = this.props;
     const isAvailable = details.status === 'active';
@@ -19,6 +20,12 @@ class Player extends React.Component {
         </li>
     )
   }
+}
+
+Player.propTypes = {
+  addToLineup: React.PropTypes.func.isRequired,
+  details: React.PropTypes.object.isRequired,
+  index: React.PropTypes.string.isRequired
 }
 
 export default Player;

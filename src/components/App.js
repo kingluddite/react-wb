@@ -100,7 +100,7 @@ class App extends React.Component {
     return (
       <div className="team-of-the-day">
         <div className="menu">
-          <Header tagline="Great Players" />
+          <Header tagline="Great Players"/>
           <ul className="list-of-players">
             {
               Object
@@ -125,10 +125,15 @@ class App extends React.Component {
           players={this.state.players}
           updatePlayer={this.updatePlayer}
           removePlayer={this.removePlayer}
+          teamId={this.props.params.teamId}
         />
       </div>
     )
   }
+}
+
+App.propTypes = {
+  params: React.PropTypes.object.isRequired
 }
 
 export default App;
