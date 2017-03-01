@@ -20,12 +20,17 @@ class Player extends React.Component {
         </li>
     )
   }
+  static propTypes = {
+    addToLineup: React.PropTypes.func.isRequired,
+    details: React.PropTypes.object.isRequired,
+    index: React.PropTypes.string.isRequired
+  }
 }
 
-Player.propTypes = {
-  addToLineup: React.PropTypes.func.isRequired,
-  details: React.PropTypes.object.isRequired,
-  index: React.PropTypes.string.isRequired
-}
+// Player.propTypes = {
+//   addToLineup: React.PropTypes.func.isRequired,
+//   details: React.PropTypes.object.isRequired,
+//   index: React.PropTypes.string.isRequired
+// }
 
 export default Player;

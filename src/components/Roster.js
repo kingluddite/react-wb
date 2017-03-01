@@ -25,7 +25,7 @@ class Roster extends React.Component {
     });
   }
 
-  handleChange(e, key) {
+  handleChange = (e, key) => {
     const player = this.props.players[key];
 
     // take a copy of that player and update it with the new data
@@ -34,19 +34,19 @@ class Roster extends React.Component {
       [e.target.name]: e.target.value
     };
     this.props.updatePlayer(key, updatedPlayer);
-  }
+  };
 
-  authenticate(provider) {
+  authenticate = (provider) => {
     // console.log(`Trying to log in with ${provider}`);
     base.authWithOAuthPopup(provider, this.authHandler);
-  }
+  };
 
-  logout() {
+  logout = () => {
     base.unauth();
     this.setState({ uid: null})
-  }
+  };
 
-  authHandler(err, authData) {
+  authHandler = (err, authData) => {
     // console.log(authData);
     if (err) {
       console.error(err);
@@ -72,9 +72,9 @@ class Roster extends React.Component {
         owner: data.owner || authData.user.uid
       })
     });
-  }
+  };
 
-  renderLogin() {
+  renderLogin = () =>{
     return (
       <div>
         <h2>Roster</h2>
@@ -84,9 +84,9 @@ class Roster extends React.Component {
         <button className="twitter" onClick={() => this.authenticate('twitter')}>Log In With Twitter</button>
       </div>
     )
-  }
+  };
 
-  renderRoster(key) {
+  renderRoster = (key) => {
     const player = this.props.players[key];
     return (
       <div className="player-edit" key={key}>
@@ -108,7 +108,7 @@ class Roster extends React.Component {
         <button onClick={() => this.props.removePlayer(key)}>Remove Player</button>
       </div>
     )
-  }
+  };
 
   render() {
     const logout = <button onClick={this.logout}>Log Out</button>;
@@ -137,15 +137,23 @@ class Roster extends React.Component {
       </div>
     )
   }
+  static propTypes = {
+    addPlayer: React.PropTypes.func.isRequired,
+    loadSamples: React.PropTypes.func.isRequired,
+    players: React.PropTypes.object.isRequired,
+    removePlayer: React.PropTypes.func.isRequired,
+    updatePlayer: React.PropTypes.func.isRequired,
+    teamId: React.PropTypes.string.isRequired
+  };
 }
 
-Roster.propTypes = {
-  addPlayer: React.PropTypes.func.isRequired,
-  loadSamples: React.PropTypes.func.isRequired,
-  players: React.PropTypes.object.isRequired,
-  removePlayer: React.PropTypes.func.isRequired,
-  updatePlayer: React.PropTypes.func.isRequired,
-  teamId: React.PropTypes.string.isRequired
-}
+// Roster.propTypes = {
+//   addPlayer: React.PropTypes.func.isRequired,
+//   loadSamples: React.PropTypes.func.isRequired,
+//   players: React.PropTypes.object.isRequired,
+//   removePlayer: React.PropTypes.func.isRequired,
+//   updatePlayer: React.PropTypes.func.isRequired,
+//   teamId: React.PropTypes.string.isRequired
+// }
 
 export default Roster;

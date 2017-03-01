@@ -20,7 +20,7 @@ class Lineup extends React.Component {
   //   return false;
   // }
 
-  renderLineup(key) {
+  renderLineup = (key) => {
     const player = this.props.players[key];
     const count = this.props.lineup[key];
     const removeButton = <button onClick={() => this.props.removeFromLineup(key)}>&times;</button>;
@@ -52,7 +52,7 @@ class Lineup extends React.Component {
         <span className="price">{formatPrice(count * player.fee)}</span>
       </li>
     )
-  }
+  };
 
   render() {
     const lineupIds = Object.keys(this.props.lineup);
@@ -85,13 +85,19 @@ class Lineup extends React.Component {
       </div>
     )
   }
+  static propTypes = {
+    lineup: React.PropTypes.object.isRequired,
+    players: React.PropTypes.object.isRequired,
+    params: React.PropTypes.object.isRequired,
+    removeFromLineup: React.PropTypes.func.isRequired
+  }
 }
 
-Lineup.propTypes = {
-  lineup: React.PropTypes.object.isRequired,
-  players: React.PropTypes.object.isRequired,
-  params: React.PropTypes.object.isRequired,
-  removeFromLineup: React.PropTypes.func.isRequired
-}
+// Lineup.propTypes = {
+//   lineup: React.PropTypes.object.isRequired,
+//   players: React.PropTypes.object.isRequired,
+//   params: React.PropTypes.object.isRequired,
+//   removeFromLineup: React.PropTypes.func.isRequired
+// }
 
 export default Lineup;

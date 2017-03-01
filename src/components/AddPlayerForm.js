@@ -3,9 +3,9 @@ import React from 'react';
 class AddPlayerForm extends React.Component {
   constructor() {
     super();
-    this.createPlayer = this.createPlayer.bind(this);
+    // this.createPlayer = this.createPlayer.bind(this);
   }
-  createPlayer(e) {
+  createPlayer = (e) => {
     e.preventDefault();
     const player = {
       firstName: this.firstName.value,
@@ -20,7 +20,8 @@ class AddPlayerForm extends React.Component {
     }
     this.props.addPlayer(player);
     this.playerForm.reset();
-  }
+  };
+
   render() {
     return (
       <form ref={(input) => this.playerForm = input} className="player-edit" onSubmit={this.createPlayer}>
@@ -43,10 +44,13 @@ class AddPlayerForm extends React.Component {
 
     )
   }
+  static propTypes = {
+    addPlayer: React.PropTypes.func.isRequired
+  };
 }
 
-AddPlayerForm.propTypes = {
-  addPlayer: React.PropTypes.func.isRequired
-}
+// AddPlayerForm.propTypes = {
+//   addPlayer: React.PropTypes.func.isRequired
+// }
 
 export default AddPlayerForm;

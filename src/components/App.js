@@ -10,20 +10,25 @@ class App extends React.Component {
 
   constructor() {
     super();
-    this.addPlayer = this.addPlayer.bind(this);
-    this.loadSamples = this.loadSamples.bind(this);
-    this.addToLineup = this.addToLineup.bind(this);
-    this.updatePlayer = this.updatePlayer.bind(this);
-    this.removePlayer = this.removePlayer.bind(this);
-    this.removeFromLineup = this.removeFromLineup.bind(this);
+    // this.addPlayer = this.addPlayer.bind(this);
+    // this.loadSamples = this.loadSamples.bind(this);
+    // this.addToLineup = this.addToLineup.bind(this);
+    // this.updatePlayer = this.updatePlayer.bind(this);
+    // this.removePlayer = this.removePlayer.bind(this);
+    // this.removeFromLineup = this.removeFromLineup.bind(this);
 
     // initial state (was known as 'getinitialstate' with React createClass)
-    this.state = {
-      players: {},
-      lineup: {}
-    };
+    // this.state = {
+    //   players: {},
+    //   lineup: {}
+    // };
 
   }
+
+  state = {
+    players: {},
+    lineup: {}
+  };
 
   componentWillMount() {
     // this runs before the <App> is rendered
@@ -50,7 +55,7 @@ class App extends React.Component {
     localStorage.setItem(`lineup-${this.props.params.teamId}`, JSON.stringify(nextState.lineup));
   }
 
-  addPlayer(player) {
+  addPlayer = (player) => {
     // update our state
     const players = {...this.state.players};
     // add in our new player
@@ -59,42 +64,42 @@ class App extends React.Component {
     // this.state.players.player1 = player;
     // set state
     this.setState({ players });
-  }
+  };
 
-  updatePlayer(key, updatedPlayer) {
+  updatePlayer = (key, updatedPlayer) => {
     const players = {...this.state.players};
     players[key] = updatedPlayer;
     this.setState({ players });
-  }
+  };
 
-  removePlayer(key) {
+  removePlayer = (key) => {
     // make a copy of our players state
     const players = {...this.state.players};
     players[key] = null;
     this.setState({ players });
-  }
+  };
 
-  loadSamples() {
+  loadSamples = () => {
     this.setState({
       players: samplePlayers
     });
-  }
+  };
 
-  addToLineup(key) {
+  addToLineup = (key) => {
     // take a copy of our state
     const lineup = {...this.state.lineup};
     // update or add the new number of players added to lineup
     lineup[key] = lineup[key] + 1 || 1;
     // update our state
     this.setState({ lineup });
-  }
+  };
 
-  removeFromLineup(key) {
+  removeFromLineup = (key) => {
     // make a copy of our players state
     const lineup = {...this.state.lineup};
     delete lineup[key];
     this.setState({ lineup });
-  }
+  };
 
   render() {
     return (
@@ -130,10 +135,13 @@ class App extends React.Component {
       </div>
     )
   }
+  static propTypes = {
+    params: React.PropTypes.object.isRequired
+  }
 }
 
-App.propTypes = {
-  params: React.PropTypes.object.isRequired
-}
+// App.propTypes = {
+//   params: React.PropTypes.object.isRequired
+// }
 
 export default App;

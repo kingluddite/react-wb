@@ -4,9 +4,9 @@ import { getFunName } from '../helpers';
 class TeamPicker extends React.Component {
   constructor() {
     super();
-    this.goToTeam = this.goToTeam.bind(this);
+    // this.goToTeam = this.goToTeam.bind(this);
   }
-  goToTeam(e) {
+  goToTeam = (e) => {
     e.preventDefault();
     // first grab text from text field
     // console.log(this.teamInput.value );
@@ -14,7 +14,7 @@ class TeamPicker extends React.Component {
     // console.log(`Going to ${teamId}`);
     // second change URL from / to /team/:teamId
     this.context.router.transitionTo(`/team/${teamId}`)
-  }
+  };
 
   render() {
     return (
@@ -27,10 +27,13 @@ class TeamPicker extends React.Component {
       </form>
     )
   }
+  static propTypes = {
+    router: React.PropTypes.object
+  }
 }
 
-TeamPicker.contextTypes = {
-  router: React.PropTypes.object
-}
+// TeamPicker.contextTypes = {
+//   router: React.PropTypes.object
+// }
 
 export default TeamPicker;
