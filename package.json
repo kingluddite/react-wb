@@ -1,8 +1,7 @@
 {
-  "name": "cotd",
+  "name": "soccerteam",
   "version": "0.0.1",
   "private": true,
-  "homepage": "https://kindluddite.github.io/react-wb",
   "devDependencies": {
     "autoprefixer-stylus": "0.10.0",
     "babel-eslint": "^7.1.1",
